@@ -1,0 +1,46 @@
+extends layout
+
+block content
+  .app-container
+    //- Sidebar (Igual à imagem do Sapiens)
+    aside.sidebar
+      .logo BIBICA
+      nav
+        ul
+          li.active: a(href="#") Biblioteca
+          li: a(href="#") Adicionar Itens
+          li: a(href="#") Adicionar Coleção
+          li: a(href="#") Publicar
+          hr
+          li: a(href="#") Configurações
+          li: a(href="#") Suporte
+
+    //- Área Principal
+    main.main-content
+      header.top-bar
+        .search-wrapper
+          //- Sem o script, este input é apenas visual
+          input#searchBar(type="text" placeholder="Começar a procurar...")
+        .user-info
+          span Usuário 1
+          .avatar
+
+      section.content-header
+        h2 Livros
+        .filters
+          button.btn-filter Filtros
+
+      //- Grade de Livros
+      section.book-grid
+        if livros && livros.length > 0
+          each livro in livros
+            article.book-card
+              .book-cover
+                img(src=livro.capa, alt=livro.titulo)
+              .book-info
+                h3= livro.titulo
+                p= livro.autor
+        else
+          p Nenhuma obra encontrada no servidor.
+
+    //- O script foi removido daqui
